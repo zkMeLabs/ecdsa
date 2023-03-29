@@ -101,6 +101,12 @@ $\begin{aligned} s &=(k_1 \cdot k_2)^{-1} \cdot (H(m) + r \cdot x_1 \cdot x_2) \
 
 The random number $p$ is added to this process for better security, and since it is always multiplied by the modulus $q$, it does not affect the correctness.
 
+#### Conclusion
+Two-party ECDSA scheme: additive key share type two-party computed signature
+The global private key is: $x = x_1 + x_2 \mod p$
+The global public key is: $h = x * P$
+Pros: The key share could be refreshed
+
 #### Symbols in code and comments
 | Symbol  | Notion  | Symbol  | Notion  |
 | :---: | :---: | :---: | :---: |
