@@ -124,7 +124,7 @@ Pros: The key share could be refreshed
 | $H$  | keccak256  | $S$ | Second party of signature (type: scalar) |
 
 #### Phase 1 Negotiate the global public key $h$, the SSI wallet address
-step1: Generate a keypair $(x_1,h_1)$ about the $h$ of party-1 and make a commitment $c_1$ ($c_1=H(h_1,r_1)$). Generate a keypair $(x_2,h_2)$ about the $h$ of party-2 and commitment $c_2$ ($c_2=H(h_2,r_2)$).
+step 1: Generate a keypair $(x_1,h_1)$ about the $h$ of party-1 and make a commitment $c_1$ ($c_1=H(h_1,r_1)$). Generate a keypair $(x_2,h_2)$ about the $h$ of party-2 and commitment $c_2$ ($c_2=H(h_2,r_2)$).
 
 | Function  | Math operation  |
 | :---: | :---: |
@@ -133,15 +133,15 @@ step1: Generate a keypair $(x_1,h_1)$ about the $h$ of party-1 and make a commit
 |generate_commitment(m, n) at party-i|$c = H(m \|\| n)$|
 |verify_commitment(c, m, n) at party-i|$c' = H(m \|\| n)$, check $c==c'$|
 
-step2: party-1 sends $c_1$ to party-2
+step 2: party-1 sends $c_1$ to party-2
 
-step3: party-2 sends $c_2$ and the preimage of $c_2 (h_2, r_2)$  to party-1
+step 3: party-2 sends $c_2$ and the preimage of $c_2 (h_2, r_2)$  to party-1
 
-step4: party-1 verify $c_2 = H(h_2, r_2)$, and then send the preimage of $c_1 (h_1, r_1)$ to party-2
+step 4: party-1 verify $c_2 = H(h_2, r_2)$, and then send the preimage of $c_1 (h_1, r_1)$ to party-2
 
-step5: party-2 verify $c_1 = H(h_1, r1)$
+step 5: party-2 verify $c_1 = H(h_1, r1)$
 
-step6: party-1 and party-2 compute $h=h_1+h_2$, confirm the same result, and declare the global public key as $h$
+step 6: party-1 and party-2 compute $h=h_1+h_2$, confirm the same result, and declare the global public key as $h$
 
 | Function  | Math operation  |
 | :---: | :---: |
@@ -154,17 +154,17 @@ step6: party-1 and party-2 compute $h=h_1+h_2$, confirm the same result, and dec
 ##### Phase 2.1.1
 party-1 generates the Paillier keypair $(psk,ppk)$ and encrypts party-1's private key $x_1$ : $c_{key} = ppk.encrypt(x_1)$ with the Paillier public key and sends $c_{key}$ to party-2
 ##### Phase 2.1.2
-step1: Generate a keypair $(q_1,Q_1)$ about the $Q$ of party-1 and make a commitment $c_3 = H(Q_1,r_3)$ to $Q_1$. Generate a keypair $(q_2,Q_2)$ about the $Q$ of party-2 and make a commitment ($c_4=H(Q_2,r_4)$ to $Q _2$.
+step 1: Generate a keypair $(q_1,Q_1)$ about the $Q$ of party-1 and make a commitment $c_3 = H(Q_1,r_3)$ to $Q_1$. Generate a keypair $(q_2,Q_2)$ about the $Q$ of party-2 and make a commitment ($c_4=H(Q_2,r_4)$ to $Q _2$.
 
-step2: party-1 sends $c_3$ to party_2
+step 2: party-1 sends $c_3$ to party_2
 
-step3: party-2 sends $c_4$ and the preimage $c_4$ ($Q_2, r_4$) to party-1
+step 3: party-2 sends $c_4$ and the preimage $c_4$ ($Q_2, r_4$) to party-1
 
-step4: party-1 verify $c_4 = H(Q_2, r_4)$, and then send the preimage of $c_3$ ($Q1, r_3$) to party-2
+step 4: party-1 verify $c_4 = H(Q_2, r_4)$, and then send the preimage of $c_3$ ($Q1, r_3$) to party-2
 
-step5: party-2 verify $c_3 = H(Q_1, r3)$
+step 5: party-2 verify $c_3 = H(Q_1, r3)$
 
-step6: party-1 computes $Q = q_1 * Q2$, party-2 computes $Q = q_2 * Q1$. After both parties confirm that the horizontal coordinate $mod p$ of $Q$ is not zero and the results are the same, they both declare $R = Q.x$, otherwise re-run Phase 2.1.2
+step 6: party-1 computes $Q = q_1 * Q2$, party-2 computes $Q = q_2 * Q1$. After both parties confirm that the horizontal coordinate $mod p$ of $Q$ is not zero and the results are the same, they both declare $R = Q.x$, otherwise re-run Phase 2.1.2
 
 | Function  | Math operation  |
 | :---: | :---: |
@@ -174,13 +174,13 @@ step6: party-1 computes $Q = q_1 * Q2$, party-2 computes $Q = q_2 * Q1$. After b
 <img src="img/phase_2_1_UML.png">
 
 #### Phase 2.2 Co-signing $S$
-step1: party-2 computes the hash digest of the data $z$, and computes the intermediate ciphertext itm_enc based on the ckey obtained from Phase 2.1.1, and its own private key $x_2$, and finally party-2 sends the itm_enc to party-1
+step 1: party-2 computes the hash digest of the data $z$, and computes the intermediate ciphertext itm_enc based on the ckey obtained from Phase 2.1.1, and its own private key $x_2$, and finally party-2 sends the itm_enc to party-1
 
 | Function  | Math operation  |
 | :---: | :---: |
 |compute_intermediate_enc() at party-2|$\rho \stackrel{R}{\longleftarrow} [1,p^2]$,  $q_2^{-1} = invert(q_2,p)$, <br /> $tmp= \rho \times p + ((q_2^{-1} \times z) \bmod  p)$, <br /> $enc_1 = ppk.encrypt(tmp)$,  $enc_2 = ppk.encrypt(x_2)$, <br /> $enc_3 = c_{key} ⊞ enc_2$,  $enc_4 = (R*q_2^{-1}) ⊠ enc_3$, <br /> $enc_5= enc_1 ⊞ enc_4$,  itm_enc = $enc_5$ |
 
-step2: party-2 sends iem_enc to party-1, party-1 computes the second part of the signature $S$ and finally declares $S$
+step 2: party-2 sends iem_enc to party-1, party-1 computes the second part of the signature $S$ and finally declares $S$
 
 | Function  | Math operation  |
 | :---: | :---: |
