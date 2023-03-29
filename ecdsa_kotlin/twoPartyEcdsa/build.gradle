@@ -1,0 +1,31 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+
+    api 'com.n1analytics:javallier_2.10:0.6.0'
+    api 'org.web3j:core:5.0.0'
+//    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+    api 'com.google.code.gson:gson:2.10'
+
+
+//    implementation 'io.reactivex:rxjava:1.2.2'
+//    implementation 'com.github.davidmoten:rtree:0.8-RC10'
+
+////    implementation 'com.squareup.jnagmp:jnagmp:2.0.0'
+    //    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
+    testImplementation 'junit:junit:4.12'
+
+//    implementation 'ch.qos.logback:logback-classic:1.0.13'
+//    implementation 'commons-cli:commons-cli:1.0.13'
+//    implementation 'commons-codec:commons-codec:1.0.13'
+//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
+
+}

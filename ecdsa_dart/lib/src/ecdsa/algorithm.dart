@@ -1,0 +1,4 @@
+enum MpcAlgorithm {
+  additive,
+  multiply,
+}

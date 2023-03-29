@@ -1,0 +1,23 @@
+name: two_party_ecdsa
+description: A dart libarry for multi-party computation（MPC）
+version: 1.0.0
+homepage: https://git.bitkinetic.com/zkme/two_party_ecdsa_dart.git
+publish_to: none
+environment:
+  sdk: '>=2.16.2 <3.0.0'
+
+
+dependencies:
+  pointycastle: ^3.6.2
+  web3dart: ^2.4.1
+  #   web3dart: ^2.4.1
+  paillier:
+    git:
+      url: https://git.bitkinetic.com/flutter/paillier.git
+  decimal:
+    git:
+      url: https://git.bitkinetic.com/flutter/decimal.git
+
+dev_dependencies:
+  lints: ^1.0.0
+  test: ^1.16.0
